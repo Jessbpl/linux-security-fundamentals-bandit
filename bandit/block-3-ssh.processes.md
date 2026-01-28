@@ -23,6 +23,7 @@ At this level, multiple services are running on different ports on `localhost`. 
 nmap -p 31000-32000 localhost
 # Connect to the correct port using the private key
 ssh -i sshkey16.private bandit17@localhost -p <PORT>
+```
 
 ### Explanation
 1. nmap is used to scan a specific range of ports on localhost to discover which services are running and which ports are open.
@@ -60,6 +61,7 @@ Two files are provided, passwords.old and passwords.new, which contain multiple 
 ```bash
 #compare both files line by line
 diff passwords.old passwords.new
+```
 
 ##Explanation
 The comparison revealed a single modified line. The updatd value in passwords.new contained the password required to access the next level.
@@ -68,7 +70,7 @@ The comparison revealed a single modified line. The updatd value in passwords.ne
 File comparison is a fundamental technique in security for detecting unauthorized changes, auditing configuration files, and analyzing log differences during incident investigations.
 
 
-Level 18 → Level 19
+## Level 18 → Level 19
 
 ## Objective
 Obtain the password by connecting to a service running on a local network port.
@@ -80,6 +82,7 @@ The password for the next level is exposed through a service listening on local.
 ```bash
 #Connect to the local host service on the specific port
 nc localhost <PORT>
+```
 
 ## Explanation
 Upon connecting to the service, the password for the next level was displayed directly in the service output.
@@ -88,7 +91,7 @@ Upon connecting to the service, the password for the next level was displayed di
 This level demonstrates how sensitive information can be leaked through misconfigured or unsecured services. Exposed services should always be reviewed and protected with propper authentication and access controls.
 
 
-Level 19 → Level 20
+## Level 19 → Level 20
 
 ## Objective
 Use a privileged executable to access a protected password file.
@@ -100,6 +103,7 @@ A binary file is provided with elevated prmissions (SetUID). when executed, it r
 ```bash
 #Execute the privileged binary
 ./bandit20-do
+```
 
 ## Explanation
 The executable accessed a protected file and revelaed the password for the next level.
