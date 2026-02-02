@@ -8,7 +8,7 @@ This block focuses on permissions, redirections, and advanced file searching tec
 ---
 
 ## Level 7 → Level 8
-###**Objective:** Extract data from a file with repeated lines.
+### **Objective:** Extract data from a file with repeated lines.
 
 ### **Command Used:**
 ```bash
