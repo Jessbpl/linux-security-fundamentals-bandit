@@ -20,7 +20,7 @@ cat readme
 ```
 
 ### Explanation:
-The cat command outputs the content of a file directly to standard output, allowing the user to read its data.
+The **cat** command outputs the content of a file directly to standard output, allowing the user to read its data.
 
 ### Security Concepts:
 File reading
@@ -45,7 +45,7 @@ cat .hidden
 ```
 
 ### Explanation:
-Hidden files start with a dot (.) and are excluded from normal ls output unless the -a flag is used.
+Hidden files start with a dot (.) and are excluded from normal **ls** output unless the **-a** flag is used.
 
 ### Security Concepts:
 Hidden files
@@ -94,7 +94,7 @@ file ./*
 ```
 
 ### Explanation:
-The file command identifies file types by analyzing their content rather than relying on filenames or extensions.
+The **file** command identifies file types by analyzing their content rather than relying on filenames or extensions.
 
 ### Security Concepts:
 File type identification
@@ -117,7 +117,7 @@ find. -type f -size 1033c
 ```
 
 ### Explanation:
-The find command searches for files based on attributes such as type and size.
+The **find** command searches for files based on attributes such as type and size.
 
 ### Security Concepts:
 File searching
@@ -135,7 +135,7 @@ find / -user bandit7 2>/dev/null
 ```
 
 ### Explanation:
-The find command searches the entire filesystem while redirecting permission errors to /dev/null.
+The **find** command searches the entire filesystem while redirecting permission errors to **/dev/null**.
 
 ### **Security Concepts:**
 File ownership
