@@ -1,4 +1,5 @@
 # BLOCK 2 – Permissions, Redirections & File Searching
+
 **Levels:** 8–15
 
 ## Overview
@@ -7,104 +8,111 @@ This block focuses on permissions, redirections, and advanced file searching tec
 ---
 
 ## Level 7 → Level 8
-**Objective:** Extract data from a file with repeated lines.
+###**Objective:** Extract data from a file with repeated lines.
 
-**Command Used:**
+###**Command Used:**
 ```bash
 sort data.txt | uniq -u
+```
 
-**Security Concepts:**
+###**Security Concepts:**
 Data processing
 Log analysis
 
 
-##Level 8 → Level 9
+##**Level 8 → Level 9**
 
-**Objective:** Find a file by owner, group, and size.
+###**Objective:** Find a file by owner, group, and size.
 
-**Command Used:**
+###**Command Used:**
 ```bash
 find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null
+```
 
-
-**Security Concepts:**
+###**Security Concepts:**
 File ownership
 Permission handling
 Error redirection
 
 
-##Level 9 → Level 10
+##**Level 9 → Level 10**
 
-**Objective:** Extract readable strings from a binary file.
+###**Objective:** Extract readable strings from a binary file.
 
-**Command Used:**
+###**Command Used:**
 ```bash
 strings data.txt
+```
 
-**Security Concepts:**
+###**Security Concepts:**
 Binary inspection
 Data leakage
 
-##Level 10 → Level 11
+##**Level 10 → Level 11**
 
-**Objective:** Decode base64-encoded data.
+###**Objective:** Decode base64-encoded data.
 
-**Command Used:**
+###**Command Used:**
 ```bash
 base64 -d data.txt
+```
 
-**Security Concepts:**
+###**Security Concepts:**
 Encoding vs encryption
 
 
-##Level 11 → Level 12
+##**Level 11 → Level 12**
 
-**Objective:** Decrypt ROT13-encoded text.
+###**Objective:** Decrypt ROT13-encoded text.
 
-**Command Used:**
+###**Command Used:**
 ```bash
 cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+```
 
-**Security Concepts:**
+###**Security Concepts:**
 Simple ciphers
 Obfuscation
 
-##Level 12 → Level 13
+##**Level 12 → Level 13**
 
-**Objective:** Extract and decompress a file multiple times.
+###**Objective:** Extract and decompress a file multiple times.
 
-**Commands Used:**
+###**Commands Used:**
 ```bash
 xxd -r data.txt > data.bin
 file data.bin
+```
 
-**Security Concepts:**
+###**Security Concepts:**
 File extraction
 Compression formats
 
 
-##Level 13 → Level 14
+##**Level 13 → Level 14**
 
-**Objective:** Use SSH keys for authentication.
+###**Objective:** Use SSH keys for authentication.
 
-**Command Used:**
+###**Command Used:**
 ``bash
 ssh -i sshkey.private bandit14@localhost
+``
 
-**Security Concepts:**
+###**Security Concepts:**
 SSH authentication
 Key-based access
 
 
-##Level 14 → Level 15
+##**Level 14 → Level 15**
 
-**Objective:** Communicate with a service using a specific port.
+###**Objective:** Communicate with a service using a specific port.
 
-**Command Used:**
+###**Command Used:**
 ```bash
 nc localhost 30000
+```
 
-**Security Concepts:**
+###**Security Concepts:**
 Networking basics
 Service interaction
 
