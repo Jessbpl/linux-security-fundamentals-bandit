@@ -8,100 +8,104 @@ It builds foundational command-line skills required to inspect files and directo
 ---
 
 ## Level 0 → Level 1
-**Objective:** Read the content of a file located in the home directory.
+### **Objective:** Read the content of a file located in the home directory.
 
-**Command Used:**
+### **Command Used:**
 ```bash
 cat readme
+```
 
-**Explanation:**
+### **Explanation:**
 The cat command outputs the content of a file to standard output.
 
-**Security Concepts:**
+### **Security Concepts:**
 File reading
 Basic command-line interaction
 
-**Relevance to Cybersecurity:**
+### **Relevance to Cybersecurity:**
 Reading configuration or log files is a common task during investigations.
 
 
-Level 2 → Level 3
+## Level 2 → Level 3
 
-**Objective:** Read a hidden file.
+### **Objective:** Read a hidden file.
 
-**Command Used:**
+### **Command Used:**
 ```bash
 ls -a
 cat .hidden
+```
 
-
-**Explanation:**
+### **Explanation:**
 Hidden files start with a dot (.) and are often excluded from default listings.
 
-**Security Concepts:**
+### **Security Concepts:**
 Hidden files
 System visibility
 
-**Relevance:**
+### **Relevance:**
 Hidden files may store credentials or configuration data.
 
 
-##Level 3 → Level 4
+## Level 3 → Level 4
 
-**Objective:** Locate a file inside a directory structure.
+### Objective: Locate a file inside a directory structure.
 
-**Command Used:**
+### **Command Used:**
 ```bash
 ls
 cd inhere
 ls
+```
 
-**Security Concepts:**
+### **Security Concepts:**
 Directory traversal
 File discovery
 
 
-##Level 4 → Level 5
+## Level 4 → Level 5
 
-*Objective:** Identify a human-readable file among multiple files.
+### **Objective:** Identify a human-readable file among multiple files.
 
-**Command Used:**
+### **Command Used:**
 ```bash
 file ./*
+```
 
-**Explanation:**
+### **Explanation:**
 The file command identifies file types based on content.
 
-**Security Concepts:**
+### **Security Concepts:**
 File type identification
 
-**Relevance:**
+### **Relevance:**
 Helps identify binaries, scripts, or readable data during forensic analysis.
 
 
-##Level 5 → Level 6
+## Level 5 → Level 6
 
-**Objective:** Locate a file based on size and readability.
+### **Objective:** Locate a file based on size and readability.
 
-**Command Used:**
+### **Command Used:**
 ```bash
 find. -type f -size 1033c
+```
 
-**Security Concepts:**
+### **Security Concepts:**
 File searching
 Attribute-based filtering
 
 
-##Level 6 → Level 7
+## Level 6 → Level 7
 
-**Objective:** Locate a file owned by a specific user.
+### **Objective:** Locate a file owned by a specific user.
 
-**Command Used:**
+### **Command Used:**
 ```bash
 find / -user bandit7 2>/dev/null
+```
 
-
-**Security Concepts:**
+### **Security Concepts:**
 File ownership
 Error redirection
 
