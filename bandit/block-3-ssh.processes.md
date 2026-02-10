@@ -1,10 +1,9 @@
 # Block-3 – SSH, Processes & Privilege Boundaries 
-
+Levels: 16–24
 
 ## Overview
-This block introduces advanced SSH usage and interaction with remote services.
-It focuses on understanding how credentials, ports, and services are exposed
-and accessed in real systems.
+This block focuses on advanced SSH usage, process inspection, and accessing privilege boundaries.
+It teaches techniques to enumerate services, inspect processes, use key-based authentication, and escalate privileges within Linux systems.
 
 ---
 
@@ -71,6 +70,7 @@ The comparison revealed a single modified line. The updatd value in passwords.ne
 File comparison is a fundamental technique in security for detecting unauthorized changes, auditing configuration files, and analyzing log differences during incident investigations.
 
 
+
 ## Level 18 → Level 19
 
 ### Objective
@@ -112,3 +112,113 @@ The executable accessed a protected file and revelaed the password for the next 
 
 ### Relevance to Cybersecurity
 SetUID binaries are powerful and potentialy dangerous. If misconfigured, they can lead to privilege escalation vulnerabilities. This level highlights the importance of controlling and auditing privileged executables.
+
+
+
+## Level 20 → Level 21
+
+### Objective:
+Retrieve the password by interacting with a service running on a specific port.
+
+### Context:
+A service is listening on a local port and expects the current password as input in order to return the password for the next level.
+
+### Commands Used:
+```bash
+cat /etc/bandit_pass/bandit20 | nc localhost 30000
+```
+
+### Explanation:
+The current password is read from the system file and piped into nc (netcat), which sends the data to the service listening on port 30000 and returns the next password.
+
+### Security Concepts:
+Service interaction
+Local network communication
+
+### Relevance to Cybersecurity:
+Understanding how services accept input over network ports is essential for penetration testing and incident response.
+
+
+
+## Level 21 → Level 22
+
+### Objective:
+Retrieve the password stored in a scheduled task configuration.
+
+### Context:
+A cron job runs periodically under a different user account. The password is embedded in a script executed by the scheduler.
+
+### Commands Used:
+```bash
+ls -l /etc/cron.d
+cat /etc/cron.d/cronjob_bandit22
+cat /usr/bin/cronjob_bandit22.sh
+```
+
+### Explanation:
+The cron configuration file reveals which script is executed automatically. Inspecting the script exposes the password being written or referenced.
+
+### Security Concepts:
+Scheduled tasks (cron jobs)
+Script inspection
+
+### Relevance to Cybersecurity:
+Cron jobs are common persistence mechanisms. Inspecting them is a key step in system audits and malware analysis.
+
+
+
+## Level 22 → Level 23
+
+### Objective:
+Retrieve a password that is dynamically generated and written to a file.
+
+### Context:
+A scheduled script creates a temporary file containing the password, which must be located and read.
+
+### Commands Used:
+```bash
+ls -l /etc/cron.d
+cat /etc/cron.d/cronjob_bandit23
+cat /usr/bin/cronjob_bandit23.sh
+ls /tmp
+cat /tmp/<generated_file>
+```
+
+### Explanation:
+By inspecting the cron job script, the location and naming pattern of the generated file can be identified. Reading the file reveals the password.
+
+### Security Concepts:
+Temporary files
+Automated credential handling
+
+### Relevance to Cybersecurity:
+Insecure handling of temporary files can lead to credential leakage and privilege escalation.
+
+
+
+## Level 23 → Level 24
+
+### Objective:
+Exploit a scheduled script to execute arbitrary commands and retrieve the password.
+
+### Context:
+A cron job executes a script from a writable directory. By modifying or injecting commands, it is possible to execute code with elevated privileges.
+
+### Commands Used:
+```bash
+ls -l /etc/cron.d
+cat /etc/cron.d/cronjob_bandit24
+cat /usr/bin/cronjob_bandit24.sh
+ls -l /var/spool/bandit24
+```
+
+### Explanation:
+The cron job executes scripts placed in a specific directory. By understanding the execution flow, it is possible to inject a script that outputs the password.
+
+### Security Concepts:
+Privilege escalation
+Insecure scheduled tasks
+Writable execution paths
+
+### Relevance to Cybersecurity:
+Misconfigured cron jobs are a real-world privilege escalation vector and are frequently exploited during post-exploitation.
